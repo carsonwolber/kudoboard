@@ -4,10 +4,16 @@ import Sort from './Sort'
 import BoardList from './BoardList'
 import CreateForm from './CreateForm'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [formView, setFormView] = useState(false);
+  const [cards, setCards] = useState([]);
+
+
+  useEffect(() => {
+    fetchCards();
+  }, []);
 
   const showCreateForm = () => {
     setFormView(true)
@@ -16,6 +22,25 @@ function App() {
   const closeView = () => {
     setFormView(false)
   }
+
+  const fetchCards = () => {
+    fetch(fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/cards`))
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      setCards(data);
+    })
+    .catch(error => {
+      console.error('Error fetching card:', error);
+    });
+  };
+
+
+
 
   return (
     <>
@@ -29,7 +54,7 @@ function App() {
         view = {formView}
         closeView = {closeView}
       />
-      <BoardList/>
+      <BoardList data={cards}/>
     </div>
     <footer>
       <button onClick={showCreateForm}>New Board</button>
