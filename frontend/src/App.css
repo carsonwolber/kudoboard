@@ -1,7 +1,23 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+}
+header {
   text-align: center;
+  width: 100%;
+  color: cornflowerblue;
 }
 
+footer {
+  background-color: #457462;
+  height: 10vh;
+  justify-content: center;
+  align-self: center;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  margin-top: 27vh;
+}
