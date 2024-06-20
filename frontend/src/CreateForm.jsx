@@ -53,7 +53,7 @@ function CreateForm( {view , closeView} ) {
         formDataToSend.append('category', formData.category.value); // category is an object because of react-select so we need to specify value
         formDataToSend.append('coverart', formData.image);
         try {
-            const response = await fetch('https://needtosetrealendpoint', { 
+            const response = await fetch('https://localhost:3000/cards', { 
                 method: 'POST',
                 body: formDataToSend,
             });
