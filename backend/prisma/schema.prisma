@@ -29,6 +29,7 @@ model Card {
   message  String
   image    String
   author   String
+  votes    Int
   boardId  Int //id for the parent board 
   board    Board   @relation(fields: [boardId], references: [id])
 }
