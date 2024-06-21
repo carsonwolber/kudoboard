@@ -1,10 +1,13 @@
 import './Board.css'
 
-function Board() {
+function Board( {img, title, category, author } ) {
     return (
-        <>
-            <p>board</p>
-        </>
+       <div className='card'>
+        <img src={img}/>
+        <h3>{title}</h3>
+        <p>{category}</p>
+        <p>{author}</p>
+       </div>
     )
 }
 

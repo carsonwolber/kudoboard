@@ -4,8 +4,8 @@ import Board from './Board'
 function BoardList( {data}) {
     return (
         <>
-            {data.map(card => {
-                <div className='card' key={card.id}>
+            {data.map(card => (
+                <div className='list' key={card.id}>
                     <Board 
                         img={card.image}
                         title={card.title}
@@ -13,9 +13,9 @@ function BoardList( {data}) {
                         author={card.author}
                     />
                 </div>
-            })}
+            ))}
         </>
-    )
+    );
 }
 
 export default BoardList;
