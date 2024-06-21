@@ -6,6 +6,7 @@ function BoardList( {data}) {
         <div className='list' key={data.id}>
             {data.map(card => (
                     <Board 
+                        id={card.id}
                         img={card.image}
                         title={card.title}
                         category={card.category}

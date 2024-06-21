@@ -3,7 +3,7 @@ import Search from './Search'
 import Filter from './Filter'
 import BoardList from './BoardList'
 import CreateForm from './CreateForm'
-// import BoardPage from './BoardPage';
+import BoardPage from './BoardPage';
 
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -85,7 +85,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/boards/:boardId" element={<BoardPage />} /> */}
+        <Route path="/boards/:boardId" element={<BoardPage />} />
         <Route path="/" element={
           <>
             <header>
