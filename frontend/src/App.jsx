@@ -10,6 +10,7 @@ function App() {
   const [formView, setFormView] = useState(false);
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState([]);
   const [shownCards, setShownCards] = useState([]); //shownCards is used for search and sort because modifying the card state directly causes us to lose data
 
 
@@ -27,13 +28,26 @@ function App() {
     setFormView(false)
   }
 
-  //when a search is made perform a filter pattern matching the search [query] to shownCards
+  //when a search  or filter is made perform a filter pattern matching the search [query] or filter(s) to shownCards
   const handleSearch = (query) => {
     setSearch(query)
-    const filtered = cards.filter(card => 
+    const matchingCards = cards.filter(card => 
       card.title.toUpperCase().includes(query.toUpperCase())
     );
-    setShownCards(filtered);
+    setShownCards(matchingCards);
+  };
+
+
+  const handleFilter = (filters) => {
+    setFilter(filters)
+    if (filters.length === 0) {
+      setShownCards(cards); // Reset to all cards if no filters are selected
+    } else {
+      const filteredCards = cards.filter(card => 
+      filters.includes(card.category) //includes allows for or logic so a card only has to have one of the categories in the filters array for it to show
+    );
+      setShownCards(filteredCards);
+    }
   };
 
 
@@ -59,7 +73,9 @@ function App() {
     <header>
       <h3>Kudos Board</h3>
       <Search searchQuery={search} setSearchQuery={handleSearch}/>
-      <Filter/>
+      <Filter
+        setFilters={handleFilter}
+      />
     </header>
     <div className='App'>
       <CreateForm

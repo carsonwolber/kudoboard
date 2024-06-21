@@ -3,7 +3,7 @@ import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
 import { categories } from './utils';
 
-function Filter() {
+function Filter( {setFilters}) {
     const animatedComponents = makeAnimated();
     const handleChange = (selectedOptions) => {
         const selectedFilters = selectedOptions ? selectedOptions.map(option => option.value) : [];
