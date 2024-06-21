@@ -17,7 +17,6 @@ function CreateForm({ view, closeView }) {
         title: '',
         category: '',
         author: '',
-        search: '' 
     });
 
     // State to control visibility of the GifModal
@@ -49,6 +48,10 @@ function CreateForm({ view, closeView }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent page refresh
+        if (!formData.image) { //because GIF is different than the other form elements this is a work around to give it the same required effect
+            alert('Please select a GIF before submitting.');
+            return;
+        }
         try {
             const response = await fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/cards`, {
                 method: 'POST',
@@ -78,12 +81,11 @@ function CreateForm({ view, closeView }) {
             <div className='form-content'>
                 <span className="close" onClick={closeView}>&times;</span>
                 <h3>Create New Kudos Board</h3>
-                <input type="text" value={formData.search} onChange={(e) => setFormData({ ...formData, search: e.target.value })} placeholder='Search for GIFs'/>
                 <button type="button" onClick={showGifView}>Select a Gif</button>
+                {formData.image && <img src={formData.image} alt="Selected GIF" style={{ width: '100px', height: '100px' }} />}
                 <GifModal
                     view={gifView}
                     closeView={closeGifView}
-                    searchQuery={formData.search}
                     onSelectGif={(gifUrl) => setFormData({ ...formData, image: gifUrl })}
                 />
                 <form onSubmit={handleSubmit}>

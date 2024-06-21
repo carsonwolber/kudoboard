@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import './GifModal.css';
 
-function GifModal({ view, closeView, searchQuery, onSelectGif }) {
+function GifModal({ view, closeView, onSelectGif }) {
+    const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
-        if (view && searchQuery) {
             fetchGifData();
-        }
-    }, [view, searchQuery]); // Fetch GIFs when modal is opened and search query changes
+    }, [searchQuery]); // Fetch GIFs when modal is opened and search query changes
 
     const fetchGifData = async () => {
+        if(searchQuery === '') {
+            return;
+        } //return if nothings been searched to avoid excessive api calls
         try {
             let url = `https://api.giphy.com/v1/gifs/search?api_key=${import.meta.env.VITE_API_KEY}&q=${searchQuery}`;
             const response = await fetch(url);
@@ -32,15 +34,28 @@ function GifModal({ view, closeView, searchQuery, onSelectGif }) {
 
     return (
         <div className="gif-modal">
-            {searchResults.map(gif => (
-                <img
-                    key={gif.id}
-                    src={gif.images.fixed_height.url}
-                    alt={gif.title}
-                    onClick={() => handleSelect(gif.images.fixed_height.url)}
-                    style={{ cursor: 'pointer', margin: '5px' }}
-                />
-            ))}
+            <div className='modal-content'>
+                <div className="search-bar">
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder='Search for GIFs'
+                        className="search-input"
+                    />
+                </div>
+                <div className="gif-grid">
+                    {searchResults.map(gif => (
+                        <img
+                            key={gif.id}
+                            src={gif.images.fixed_height_small}
+                            alt={gif.title}
+                            onClick={() => handleSelect(gif.images.original.url)}
+                            className="gif-item"
+                        />
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }
