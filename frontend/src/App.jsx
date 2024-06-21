@@ -5,6 +5,7 @@ import BoardList from './BoardList'
 import CreateForm from './CreateForm'
 
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   const [formView, setFormView] = useState(false);
@@ -81,28 +82,29 @@ function App() {
   };
 
   return (
-    <>
-    <header>
-      <h3>Kudos Board</h3>
-      <div className='banner'>
-        <Search searchQuery={search} setSearchQuery={handleSearch}/>
-        <Filter
-          setFilters={handleFilter}
-        />
-      </div>
-    </header>
-    <div className='App'>
-      <CreateForm
-        view = {formView}
-        closeView = {closeView}
-      />
-      <BoardList data={shownCards}/>
-    </div>
-    <footer>
-      <button onClick={showCreateForm}>New Board</button>
-    </footer>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <header>
+              <h3>Kudos Board</h3>
+              <div className='banner'>
+                <Search searchQuery={search} setSearchQuery={handleSearch}/>
+                <Filter setFilters={handleFilter}/>
+              </div>
+            </header>
+            <div className='App'>
+              <CreateForm view={formView} closeView={closeView}/>
+              <BoardList data={shownCards}/>
+            </div>
+            <footer>
+              <button onClick={showCreateForm}>New Board</button>
+            </footer>
+          </>
+        } />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
