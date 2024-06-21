@@ -1,11 +1,17 @@
 import './BoardPage.css';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import CardList from './CardList';
 
 function BoardPage() {
     const [board, setBoard] = useState(null);
     const { boardId } = useParams();
+
+    const navigate = useNavigate();
+
+    const handleBackClick = () => {
+        navigate(`/`);
+    };
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}`)
@@ -28,7 +34,10 @@ function BoardPage() {
         <div>
             {board ? (
                 <>
-                    <h2>{board.title}</h2>
+                    <header>
+                        <h2>{board.title}</h2>
+                    </header>
+                    <button onClick={handleBackClick} className='backbtn'>⬅️</button>
                     <CardList data={board.cards} />
                 </>
             ) : (
