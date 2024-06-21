@@ -47,10 +47,11 @@ function App() {
     <>
     <header>
       <h3>Kudos Board</h3>
-    </header>
-    <div className='App'>
       <Search/>
       <Sort/>
+    </header>
+    <div className='App'>
+    
       <CreateForm
         view = {formView}
         closeView = {closeView}

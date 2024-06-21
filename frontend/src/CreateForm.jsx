@@ -47,7 +47,6 @@ function CreateForm({ view, closeView }) {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent page refresh
         if (!formData.image) { //because GIF is different than the other form elements this is a work around to give it the same required effect
             alert('Please select a GIF before submitting.');
             return;

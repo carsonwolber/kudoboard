@@ -1,25 +1,26 @@
 .card {
     border: 1px solid black;
     border-radius: 8px;
-    margin: 10px; 
-    width: 200px; 
-    height: 400px; 
-    max-width: 90%; 
+    margin: 10px;
+    width: 25%;
+    height: 40%;
+    max-width: 80%;
     overflow: visible;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
     transition: transform 0.1s;
+    font-size: 10pt;
 }
 
 .card img {
-    width: 100%; 
-    height: auto; 
-    display: block; 
-    border-top-left-radius: 7px;
+    width: 100%;
+    height: auto;
+    display: block;
     border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    margin: 0;
 }
 
 .card:hover {
-    box-shadow: 0 12px 24px 0 rgba(0, 0, 0, 0.5);
     transform: scale(1.04);
 }

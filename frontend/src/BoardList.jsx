@@ -3,18 +3,16 @@ import Board from './Board'
 
 function BoardList( {data}) {
     return (
-        <>
+        <div className='list' key={data.id}>
             {data.map(card => (
-                <div className='list' key={card.id}>
                     <Board 
                         img={card.image}
                         title={card.title}
                         category={card.category}
                         author={card.author}
                     />
-                </div>
-            ))}
-        </>
+                ))}
+        </div>
     );
 }
 
