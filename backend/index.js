@@ -4,8 +4,10 @@ const cors = require('cors');
 express = require('express')
 const app = express()
 const PORT = 3000
+
 app.use(express.json())
 app.use(cors());
+
 
 app.get('/boards', async (req,res) => {
     const cards = await prisma.board.findMany()
@@ -64,20 +66,32 @@ app.post('/boards/:boardId/cards', async (req,res) => {
     res.status(201).json(newCard);
 });
 
-app.put('/boards/:boardId/cards/:cardId', async (req,res) => {
-    const { cardId } = req.params
 
-    // handler logic to ensure we find a match between the card we want to change and a card in our db
-    const cardIndex = card.findIndex(card => card.id === parseInt(cardId))
-  
-    if (cardIndex !== -1) {
-      const updatedCardInfo = req.body
-      card[cardIndex] = { ...card[cardIndex], ...updatedCardInfo }
-      res.json(card[cardIndex])
-    } else {
-      res.status(404).send('Card not found')
+app.put('/boards/:boardId/cards/:cardId', async (req, res) => {
+    const { cardId, boardId } = req.params;
+
+    try {
+        // Fetch the specific card from the database
+        const card = await prisma.card.findUnique({
+            where: { id: parseInt(cardId) }
+        });
+
+        if (card) {
+            // Update the card with new data from the request body
+            const updatedCard = await prisma.card.update({
+                where: { id: parseInt(cardId) },
+                data: req.body
+            });
+            res.json(updatedCard);
+        } else {
+            res.status(404).send('Card not found');
+        }
+    } catch (error) {
+        console.error('Failed to update card:', error);
+        res.status(500).send('Internal Server Error');
     }
-})
+});
+
 
 const server = app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
