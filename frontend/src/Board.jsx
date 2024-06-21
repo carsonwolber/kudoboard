@@ -2,7 +2,7 @@ import './Board.css'
 
 function Board( {img, title, category, author } ) {
     return (
-       <div className='card'>
+       <div className='board'>
         <img src={img}/>
         <h3>{title}</h3>
         <p>{category}</p>

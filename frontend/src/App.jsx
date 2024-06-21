@@ -3,6 +3,7 @@ import Search from './Search'
 import Filter from './Filter'
 import BoardList from './BoardList'
 import CreateForm from './CreateForm'
+// import BoardPage from './BoardPage';
 
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -65,7 +66,7 @@ function App() {
 
 
   const fetchCards = () => {
-    fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/cards`)
+    fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -84,6 +85,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* <Route path="/boards/:boardId" element={<BoardPage />} /> */}
         <Route path="/" element={
           <>
             <header>

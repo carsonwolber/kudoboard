@@ -53,7 +53,7 @@ function CreateForm({ view, closeView }) {
             return;
         }
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/cards`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
