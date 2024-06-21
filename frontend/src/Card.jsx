@@ -1,6 +1,6 @@
-import './Board.css' // similar to the cardlist here adding more css than what already exists for boards would be redundant
-import { useState, useEffect } from 'react';
+import './Card.css'
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function Card( {id, title, message, image, author, votes}) {
 
@@ -20,8 +20,15 @@ function Card( {id, title, message, image, author, votes}) {
     };
 
 
+    // when clicked this button fetches from delete route endpoint
+    const deleteCard = async () => {
+        fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}/cards/${id}`, {
+            method: 'DELETE',
+            })
+    };
+
     useEffect(() => {
-        //updateVotes syncs [increments] changes to the database anytime card data (i.e. votes) chamges
+        // updateVotes syncs [increments] changes to the database anytime card data (i.e. votes) chamges
         const updateVotes = async () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}/cards/${id}`, {
@@ -32,7 +39,6 @@ function Card( {id, title, message, image, author, votes}) {
                     body: JSON.stringify({ votes: cardData.votes })
                 });
                 const result = await response.json();
-                console.log('Votes updated:', result);
             } catch (error) {
                 console.error('Error updating votes:', error);
             }
@@ -43,12 +49,13 @@ function Card( {id, title, message, image, author, votes}) {
     
     // votes is the only field that changes using the cardData state so output comes from there – for the rest it doesn't matter so just use the prop directly
     return (
-        <div className='board'>
+        <div className='card'>
             <img src={image} alt={title}/>
             <h3>{title}</h3>
             <p>{author}</p>
             <p>{message}</p>
-            <button onClick={increment}>{cardData.votes} : ⬆️ Upvote</button> 
+            <button onClick={increment} className='votebtn'>{cardData.votes}  ⬆️ </button> 
+            <button onClick={deleteCard} className='deletebtn'>Delete🗑️</button>
         </div>
     ); 
 }

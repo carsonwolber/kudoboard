@@ -93,6 +93,21 @@ app.put('/boards/:boardId/cards/:cardId', async (req, res) => {
 });
 
 
+app.delete('/boards/:boardId/cards/:cardId', async (req, res) => {
+    const { cardId } = req.params;
+
+    try {
+        const deletedCard = await prisma.card.delete({
+            where: { id: parseInt(cardId) }
+        });
+        res.status(204).send();
+    } catch (error) {
+        console.error('Failed to delete card:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
 const server = app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 }); 

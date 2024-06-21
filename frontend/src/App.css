@@ -10,6 +10,10 @@ header {
   justify-content: space-between;
 }
 
+h1 {
+  font-size: 40pt;
+}
+
 footer {
   background-color: #457462;
   height: 10vh;
@@ -18,7 +22,7 @@ footer {
   bottom: 0;
   display: flex;
   width: 100%;
-  margin-top: 27vh;
+  margin-top: 12vh;
 }
 
 .App {
