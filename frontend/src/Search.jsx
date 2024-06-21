@@ -9,7 +9,7 @@ function Search({ searchQuery, setSearchQuery }) {
     return (
     <>
         <div className='searchbar'>
-            <input type="text" value={searchQuery} onChange={handleSearchChange} placeholder="Search for…" />
+            <input type="text" value={searchQuery.value} onChange={handleSearchChange} placeholder="Search for…" />
         </div>
     </>
     );

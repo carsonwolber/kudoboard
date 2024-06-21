@@ -48,7 +48,7 @@ function GifModal({ view, closeView, onSelectGif }) {
                     {searchResults.map(gif => (
                         <img
                             key={gif.id}
-                            src={gif.images.fixed_height_small}
+                            src={gif.images.fixed_height_small.url}
                             alt={gif.title}
                             onClick={() => handleSelect(gif.images.original.url)}
                             className="gif-item"
