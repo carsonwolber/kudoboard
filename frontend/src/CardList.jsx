@@ -6,6 +6,7 @@ function CardList ( {data} ) {
         <div className='list' key={data.id}>
             {data.map(card => (
                 <Card
+                    id={card.id}
                     title = {card.title}
                     message = {card.message}
                     image = {card.image}

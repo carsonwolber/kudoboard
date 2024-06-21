@@ -89,7 +89,7 @@ function App() {
         <Route path="/" element={
           <>
             <header>
-              <h3>Kudos Board</h3>
+              <h2>Kudos Board</h2>
               <div className='banner'>
                 <Search searchQuery={search} setSearchQuery={handleSearch}/>
                 <Filter setFilters={handleFilter}/>

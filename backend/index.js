@@ -64,6 +64,21 @@ app.post('/boards/:boardId/cards', async (req,res) => {
     res.status(201).json(newCard);
 });
 
+app.put('/boards/:boardId/cards/:cardId', async (req,res) => {
+    const { cardId } = req.params
+
+    // handler logic to ensure we find a match between the card we want to change and a card in our db
+    const cardIndex = card.findIndex(card => card.id === parseInt(cardId))
+  
+    if (cardIndex !== -1) {
+      const updatedCardInfo = req.body
+      card[cardIndex] = { ...card[cardIndex], ...updatedCardInfo }
+      res.json(card[cardIndex])
+    } else {
+      res.status(404).send('Card not found')
+    }
+})
+
 const server = app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 }); 
