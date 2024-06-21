@@ -1,10 +1,11 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
-
+const cors = require('cors');
 express = require('express')
 const app = express()
 const PORT = 3000
 app.use(express.json())
+app.use(cors());
 
 app.get('/cards', async (req,res) => {
     const cards = await prisma.kudos.findMany()
