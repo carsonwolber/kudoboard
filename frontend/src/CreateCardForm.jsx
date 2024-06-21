@@ -3,7 +3,7 @@ import { useState } from 'react';
 import GifModal from './GifModal';
 
 
-function CreateCardForm ({view, closeView}) {
+function CreateCardForm ({view, closeView, boardId}) {
     if (!view) {
         return null;
     }
@@ -13,7 +13,8 @@ function CreateCardForm ({view, closeView}) {
         image: '', // Image URL from Giphy
         title: '',
         author: '',
-        message: ''
+        message: '',
+        votes: 0
     });
 
     const [gifView, setGifView] = useState(false);
@@ -41,7 +42,7 @@ function CreateCardForm ({view, closeView}) {
             return;
         }
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/:boardId/cards`, {
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}/cards`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

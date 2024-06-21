@@ -12,20 +12,6 @@ app.get('/boards', async (req,res) => {
     res.status(200).json(cards)
 })
 
-app.post('/boards', async (req, res) => {
-    const { title, image, category, author } = req.body;
-    console.log(req.body)
-    const newCard = await prisma.board.create({
-        data: {
-            title, 
-            image, 
-            category, 
-            author
-        }
-    })
-    res.status(201).json(newCard);
-});
-
 
 app.get('/boards/:boardId', async (req, res) => {
     const { boardId } = req.params;
@@ -45,6 +31,37 @@ app.get('/boards/:boardId', async (req, res) => {
         console.error('Failed to fetch board:', error);
         res.status(500).send('Internal Server Error');
     }
+});
+
+
+app.post('/boards', async (req, res) => {
+    const { title, image, category, author } = req.body;
+    const newBoard = await prisma.board.create({
+        data: {
+            title, 
+            image, 
+            category, 
+            author
+        }
+    })
+    res.status(201).json(newBoard);
+});
+
+
+app.post('/boards/:boardId/cards', async (req,res) => {
+    const {title, image, message, author, votes} = req.body; 
+    const { boardId } = req.params;
+    const newCard = await prisma.card.create({
+        data: {
+            title, 
+            message, 
+            image, 
+            author,
+            votes,
+            boardId: parseInt(boardId)
+        }
+    })
+    res.status(201).json(newCard);
 });
 
 const server = app.listen(PORT, () => {

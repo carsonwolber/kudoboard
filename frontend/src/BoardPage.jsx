@@ -36,7 +36,7 @@ function BoardPage() {
             .catch(error => {
                 console.error('Error fetching board data:', error);
             });
-    }, [boardId]);
+    }, []);
 
     return (
         <div>
@@ -46,7 +46,7 @@ function BoardPage() {
                         <h2>{board.title}</h2>
                     </header>
                     <button onClick={handleBackClick} className='backbtn'>⬅️</button>
-                    <CreateCardForm view={cardFormView} closeView={closeCardView}/>
+                    <CreateCardForm view={cardFormView} closeView={closeCardView} boardId={boardId}/>
                     <CardList data={board.cards} />
                 </>
             ) : (
