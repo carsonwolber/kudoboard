@@ -89,7 +89,7 @@ function App() {
         <Route path="/" element={
           <>
             <header>
-              <h2>Kudos Board</h2>
+              <h1>Kudos Board</h1>
               <div className='banner'>
                 <Search searchQuery={search} setSearchQuery={handleSearch}/>
                 <Filter setFilters={handleFilter}/>
@@ -100,7 +100,7 @@ function App() {
               <BoardList data={shownCards}/>
             </div>
             <footer>
-              <button onClick={showCreateForm}>New Board</button>
+              <button className='newboardbtn' onClick={showCreateForm}>New Board</button>
             </footer>
           </>
         } />

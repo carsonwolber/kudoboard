@@ -43,7 +43,7 @@ function BoardPage() {
             {board ? (
                 <>
                     <header>
-                        <h2>{board.title}</h2>
+                        <h1>{board.title}</h1>
                     </header>
                     <button onClick={handleBackClick} className='backbtn'>⬅️</button>
                     <CreateCardForm view={cardFormView} closeView={closeCardView} boardId={boardId}/>
@@ -53,7 +53,7 @@ function BoardPage() {
                 <p>Loading...</p> //this is just a placeholder while board renders (hopefully shouldn't need to be called)
             )}
             <footer>
-              <button onClick={showCreateCardForm}>New Card</button>
+              <button className="newcardbtn" onClick={showCreateCardForm}>New Card</button>
             </footer>
         </div>
     );

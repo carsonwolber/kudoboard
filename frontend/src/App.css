@@ -22,9 +22,16 @@ footer {
 }
 
 .App {
+  margin-top: 1%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.newboardbtn {
+  margin: auto;
+  width: 10%;
+  height: 40%;
 }
