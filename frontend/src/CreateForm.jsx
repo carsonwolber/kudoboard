@@ -3,6 +3,7 @@ import './CreateForm.css';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import GifModal from './GifModal';
+import { card_categories } from './utils';
 
 function CreateForm({ view, closeView }) {
     if (!view) {
@@ -67,13 +68,6 @@ function CreateForm({ view, closeView }) {
         }
     };
 
-    // Categories for react-select
-    const categories = [
-        { value: 'recent', label: 'Recent' },
-        { value: 'celebration', label: 'Celebration' },
-        { value: 'thanks', label: 'Thank You' },
-        { value: 'inspiration', label: 'Inspiration' }
-    ];
 
     return (
         <div className='form'>
@@ -95,7 +89,7 @@ function CreateForm({ view, closeView }) {
                         placeholder="Select Category"
                         closeMenuOnSelect={true}
                         components={animatedComponents}
-                        options={categories}
+                        options={card_categories}
                         onChange={handleCategoryChange}
                         value={formData.category.value}
                         required

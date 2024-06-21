@@ -1,7 +1,7 @@
 import './Filter.css'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
-import { categories } from './utils';
+import { filter_categories } from './utils';
 
 function Filter( {setFilters}) {
     const animatedComponents = makeAnimated();
@@ -17,7 +17,7 @@ function Filter( {setFilters}) {
                 isMulti
                 closeMenuOnSelect={true}
                 components={animatedComponents}
-                options={categories}
+                options={filter_categories}
                 onChange={handleChange}
                 isClearable={true}
                 className='filter'

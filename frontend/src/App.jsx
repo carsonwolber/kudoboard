@@ -11,13 +11,14 @@ function App() {
   const [cards, setCards] = useState([]);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState([]);
-  const [shownCards, setShownCards] = useState([]); //shownCards is used for search and sort because modifying the card state directly causes us to lose data
+  const [shownCards, setShownCards] = useState([]); // shownCards is used for search and sort because modifying the card state directly causes us to lose data
 
 
   useEffect(() => {
     fetchCards();
   }, []);
-  /*form view is handled by a basic boolean (if false the component just returns null
+
+  /* Form view is handled by a basic boolean (if false the component just returns null
   the handler therefore needs to be in the parent component which is why show/hide are here
   */
   const showCreateForm = () => {
@@ -28,7 +29,7 @@ function App() {
     setFormView(false)
   }
 
-  //when a search  or filter is made perform a filter pattern matching the search [query] or filter(s) to shownCards
+  // When a search  or filter is made perform a filter pattern matching the search [query] or filter(s) to shownCards
   const handleSearch = (query) => {
     setSearch(query)
     const matchingCards = cards.filter(card => 
@@ -39,14 +40,25 @@ function App() {
 
 
   const handleFilter = (filters) => {
-    setFilter(filters)
+    setFilter(filters);
     if (filters.length === 0) {
       setShownCards(cards); // Reset to all cards if no filters are selected
     } else {
-      const filteredCards = cards.filter(card => 
-      filters.includes(card.category) //includes allows for or logic so a card only has to have one of the categories in the filters array for it to show
-    );
-      setShownCards(filteredCards);
+      let resultCards = cards;
+  
+      // If 'recent' is one of the filters, sort the cards by a timestamp or similar property
+      if (filters.includes('recent')) {
+        resultCards = [...resultCards].sort((a, b) => b.id - a.id); // Assuming 'id' can be used as a proxy for recency
+      }
+  
+      // Apply category filters if there are any filters other than 'recent'
+      if (filters.some(filter => filter !== 'recent')) {
+        resultCards = resultCards.filter(card => 
+          filters.includes(card.category)
+        );
+      }
+  
+      setShownCards(resultCards);
     }
   };
 
@@ -61,7 +73,7 @@ function App() {
     })
     .then(data => {
       setCards(data);
-      setShownCards(data); //both sets of cards should have the full suite to start and then the shown state is dynamic for rendering
+      setShownCards(data); // both sets of cards should have the full suite to start and then the shown state is dynamic for rendering
     })
     .catch(error => {
       console.error('Error fetching card:', error);
@@ -72,10 +84,12 @@ function App() {
     <>
     <header>
       <h3>Kudos Board</h3>
-      <Search searchQuery={search} setSearchQuery={handleSearch}/>
-      <Filter
-        setFilters={handleFilter}
-      />
+      <div className='banner'>
+        <Search searchQuery={search} setSearchQuery={handleSearch}/>
+        <Filter
+          setFilters={handleFilter}
+        />
+      </div>
     </header>
     <div className='App'>
       <CreateForm
