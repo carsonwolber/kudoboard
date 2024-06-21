@@ -1,7 +1,6 @@
 import './Card.css'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
 function Card( {id, title, message, image, author, votes}) {
 
     const { boardId } = useParams();
@@ -20,12 +19,14 @@ function Card( {id, title, message, image, author, votes}) {
     };
 
 
-    // when clicked this button fetches from delete route endpoint
+    // when clicked this button fetches from delete route endpoint and calls the fetchBoard helper to reload page
     const deleteCard = async () => {
         fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}/cards/${id}`, {
             method: 'DELETE',
             })
+        window.location.reload(); // force page to reload so card disappears
     };
+
 
     useEffect(() => {
         // updateVotes syncs [increments] changes to the database anytime card data (i.e. votes) chamges
