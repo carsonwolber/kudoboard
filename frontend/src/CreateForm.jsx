@@ -53,10 +53,10 @@ function CreateForm( {view , closeView} ) {
         formDataToSend.append('category', formData.category.value); // category is an object because of react-select so we need to specify value
         formDataToSend.append('coverart', formData.image);
         try {
-            const response = await fetch('https://localhost:3000/cards', { 
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/cards`, { 
                 method: 'POST',
                 body: formDataToSend,
-            });
+              });
             const result = await response.json();
             console.log(result);
         } catch (error) {
@@ -78,7 +78,7 @@ function CreateForm( {view , closeView} ) {
             <h3>Create New Kudos Board</h3>
             <form onSubmit={handleSubmit}>
                 <label>Cover Art:</label>
-                    <input type='file' name="coverart" accept='image/jpg, image/jpeg, image/gif, image/png' onChange={handleChange}/>
+                <input type='file' name="coverart" accept='image/jpg, image/jpeg, image/gif, image/png' onChange={handleChange}/>
                 <label>Title:</label>
                 <input type="text" name="title" value={formData.title} onChange={handleChange} required/>
                 <label>Category:</label>

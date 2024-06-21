@@ -11,6 +11,20 @@ app.get('/cards', async (req,res) => {
     res.status(200).json(cards)
 })
 
+app.post('/cards', async (req, res) => {
+    const { title, image, category, author } = req.body;
+    console.log(req.body)
+    const newCard = await prisma.kudos.create({
+        data: {
+            title, 
+            image, 
+            category, 
+            author
+        }
+    })
+    res.status(201).json(newCard);
+});
+
 const server = app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`)
 }); 

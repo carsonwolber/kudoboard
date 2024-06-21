@@ -25,7 +25,7 @@ function App() {
   }
 
   const fetchCards = () => {
-    fetch(fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/cards`))
+    fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/cards`)
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
