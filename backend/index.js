@@ -8,14 +8,14 @@ app.use(express.json())
 app.use(cors());
 
 app.get('/cards', async (req,res) => {
-    const cards = await prisma.kudos.findMany()
+    const cards = await prisma.board.findMany()
     res.status(200).json(cards)
 })
 
 app.post('/cards', async (req, res) => {
     const { title, image, category, author } = req.body;
     console.log(req.body)
-    const newCard = await prisma.kudos.create({
+    const newCard = await prisma.board.create({
         data: {
             title, 
             image, 

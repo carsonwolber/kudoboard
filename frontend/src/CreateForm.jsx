@@ -95,7 +95,7 @@ function CreateForm({ view, closeView }) {
                         required
                     />
                     <label>Author:</label>
-                    <input type="text" name="author" value={formData.author} onChange={handleChange} required/>
+                    <input type="text" name="author" value={formData.author} onChange={handleChange}/>
                     <button type="submit">Submit</button>
                 </form>
             </div>
