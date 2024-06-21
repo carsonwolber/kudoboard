@@ -13,11 +13,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model Kudos {
   id    Int     @id @default(autoincrement()) // Auto-incremented primary key
   title  String  // Card Title
   image  String  // Image URL
   category  String  // Type of Card
-  Author  String  //Card Creator      
+  author  String  //Card Creator      
 }

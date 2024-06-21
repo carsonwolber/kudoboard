@@ -14,7 +14,8 @@ function App() {
   useEffect(() => {
     fetchCards();
   }, []);
-
+  //form view is handled by a basic boolean (if false the component just returns null
+  //the handler therefore needs to be in the parent component which is why show/hide are here
   const showCreateForm = () => {
     setFormView(true)
   }
