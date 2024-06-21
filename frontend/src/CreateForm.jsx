@@ -82,7 +82,7 @@ function CreateForm({ view, closeView }) {
                 <span className="close" onClick={closeView}>&times;</span>
                 <h3>Create New Kudos Board</h3>
                 <button type="button" onClick={showGifView}>Select a Gif</button>
-                {formData.image && <img src={formData.image} alt="Selected GIF" style={{ width: '100px', height: '100px' }} />}
+                <img className="gifpreview" src={formData.image}/>
                 <GifModal
                     view={gifView}
                     closeView={closeGifView}

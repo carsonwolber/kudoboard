@@ -38,3 +38,8 @@
  input {
     display: block;
  }
+
+ .gifpreview {
+    width: 25%;
+    margin-left: 2%;
+ }
