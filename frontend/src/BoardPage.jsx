@@ -2,16 +2,25 @@ import './BoardPage.css';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CardList from './CardList';
+import CreateCardForm from './CreateCardForm'
 
 function BoardPage() {
     const [board, setBoard] = useState(null);
     const { boardId } = useParams();
-
     const navigate = useNavigate();
+    const [cardFormView, setCardFormView] = useState(false);
 
     const handleBackClick = () => {
         navigate(`/`);
     };
+
+    const showCreateCardForm = () => {
+        setCardFormView(true)
+      }
+    
+      const closeCardView = () => {
+        setCardFormView(false)
+      }
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}`)
@@ -22,7 +31,6 @@ function BoardPage() {
                 return response.json();
             })
             .then(data => {
-                console.log("data", data);
                 setBoard(data);
             })
             .catch(error => {
@@ -38,11 +46,15 @@ function BoardPage() {
                         <h2>{board.title}</h2>
                     </header>
                     <button onClick={handleBackClick} className='backbtn'>⬅️</button>
+                    <CreateCardForm view={cardFormView} closeView={closeCardView}/>
                     <CardList data={board.cards} />
                 </>
             ) : (
                 <p>Loading...</p> //this is just a placeholder while board renders (hopefully shouldn't need to be called)
             )}
+            <footer>
+              <button onClick={showCreateCardForm}>New Card</button>
+            </footer>
         </div>
     );
 }
