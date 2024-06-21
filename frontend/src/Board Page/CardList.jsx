@@ -1,4 +1,4 @@
-import './BoardList.css' //css will be identical to the main boards so just reuse
+import '../Home Page/BoardList.css' //css will be identical to the main boards so just reuse
 import Card from './Card'
 
 function CardList ( {data} ) {

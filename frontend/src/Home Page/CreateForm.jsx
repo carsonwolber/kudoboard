@@ -2,8 +2,8 @@ import { useState } from 'react';
 import './CreateForm.css';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import GifModal from './GifModal';
-import { card_categories } from './utils';
+import GifModal from '../GifModal';
+import { card_categories } from '../utils';
 
 function CreateForm({ view, closeView }) {
     if (!view) {
@@ -43,12 +43,12 @@ function CreateForm({ view, closeView }) {
     const handleCategoryChange = (selectedOption) => {
         setFormData(prevState => ({
             ...prevState,
-            category: selectedOption.value // category is an object because of react-select so we need to specify value
+            category: selectedOption.value // Category is an object because of react-select so we need to specify value
         }));
     };
 
     const handleSubmit = async (event) => {
-        if (!formData.image) { //because GIF is different than the other form elements this is a work around to give it the same required effect
+        if (!formData.image) { // Because GIF is different than the other form elements this is a work around to give it the same required effect
             alert('Please select a GIF before submitting.');
             return;
         }

@@ -1,9 +1,9 @@
 import './App.css'
-import Search from './Search'
-import Filter from './Filter'
-import BoardList from './BoardList'
-import CreateForm from './CreateForm'
-import BoardPage from './BoardPage';
+import Search from './Home Page/Search'
+import Filter from './Home Page/Filter'
+import BoardList from './Home Page/BoardList'
+import CreateForm from './Home Page/CreateForm'
+import BoardPage from './Board Page/BoardPage';
 
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -75,7 +75,7 @@ function App() {
     })
     .then(data => {
       setCards(data);
-      setShownCards(data); // both sets of cards should have the full suite to start and then the shown state is dynamic for rendering
+      setShownCards(data); // Both sets of cards should have the full suite to start and then the shown state is dynamic for rendering
     })
     .catch(error => {
       console.error('Error fetching card:', error);

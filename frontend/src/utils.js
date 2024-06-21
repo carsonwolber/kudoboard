@@ -16,8 +16,10 @@ export const card_categories = [
 
 
 /*
-fetches the board data. this is done exogenously 
+Fetches the board data. this is done exogenously 
 so we can reuse the file inside the card component for delete as well
+
+this is somewhat obsolete since deletion is now handled through a simpler page reload
 */
 export function fetchBoard(boardId) {
     return fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}`)

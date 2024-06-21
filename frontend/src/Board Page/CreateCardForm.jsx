@@ -1,6 +1,6 @@
-import './CreateForm.css' //this component is very similar to CreateForm so css can be repeated but different input types e.g. message necessiate a different component still 
+import '../Home Page/CreateForm.css' //this component is very similar to CreateForm so css can be repeated but different input types e.g. message necessiate a different component still 
 import { useState } from 'react';
-import GifModal from './GifModal';
+import GifModal from '../GifModal';
 
 
 function CreateCardForm ({view, closeView, boardId}) {
@@ -27,7 +27,7 @@ function CreateCardForm ({view, closeView, boardId}) {
         setGifView(false);
     };
 
-    //new to this component the default change handler works for message as well
+    // New to this component the default change handler works for message as well
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -37,7 +37,7 @@ function CreateCardForm ({view, closeView, boardId}) {
     };
 
     const handleSubmit = async (event) => {
-        if (!formData.image) { //because GIF is different than the other form elements this is a work around to give it the same required effect
+        if (!formData.image) { // Because GIF is different than the other form elements this is a work around to give it the same required effect
             alert('Please select a GIF before submitting.');
             return;
         }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CardList from './CardList';
 import CreateCardForm from './CreateCardForm'
-import { fetchBoard } from './utils';
+import { fetchBoard } from '../utils';
 
 function BoardPage() {
     const [board, setBoard] = useState(null);
@@ -19,9 +19,9 @@ function BoardPage() {
         setCardFormView(true)
       }
     
-      const closeCardView = () => {
-        setCardFormView(false)
-      }
+    const closeCardView = () => {
+    setCardFormView(false)
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,7 +48,7 @@ function BoardPage() {
                     <CardList data={board.cards} />
                 </>
             ) : (
-                <p>Loading...</p> //this is just a placeholder while board renders (hopefully shouldn't need to be called)
+                <p>Loading...</p> // This is just a placeholder while [board] renders (hopefully shouldn't ever see this)
             )}
             <footer>
               <button className="newcardbtn" onClick={showCreateCardForm}>New Card</button>

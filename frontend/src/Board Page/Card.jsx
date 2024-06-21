@@ -12,24 +12,21 @@ function Card( {id, title, message, image, author, votes}) {
         votes: votes
     });
 
-
-    // when upvote is clicked the cardData vote field updates and this is relayed back to the db through a helper
+    // When upvote button is clicked the [cardData] vote field updates and this is relayed back to the db through a helper
     const increment = () => {
-        setCardData({...cardData, votes: cardData.votes + 1});  // this line is enough to update the votes field ui but the value is lost on refresh
+        setCardData({...cardData, votes: cardData.votes + 1});  // This line is enough to update the votes field ui but the value is lost on refresh
     };
 
-
-    // when clicked this button fetches from delete route endpoint and calls the fetchBoard helper to reload page
+    // When clicked this button fetches from delete route endpoint and calls the [fetchBoard] helper to reload page
     const deleteCard = async () => {
         fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}/cards/${id}`, {
             method: 'DELETE',
             })
-        window.location.reload(); // force page to reload so card disappears
+        window.location.reload(); // Force page to reload so card disappears
     };
 
-
     useEffect(() => {
-        // updateVotes syncs [increments] changes to the database anytime card data (i.e. votes) chamges
+        // [updateVotes] syncs [increments] changes to the database anytime card data (i.e. votes) chamges
         const updateVotes = async () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}/cards/${id}`, {
@@ -46,9 +43,8 @@ function Card( {id, title, message, image, author, votes}) {
         };
             updateVotes();
     }, [cardData]);
- 
     
-    // votes is the only field that changes using the cardData state so output comes from there – for the rest it doesn't matter so just use the prop directly
+    // [votes] is the only field that changes using the [cardData] state so output comes from there – for the rest it doesn't matter so just use the prop directly
     return (
         <div className='card'>
             <img src={image} alt={title}/>

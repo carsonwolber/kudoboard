@@ -1,7 +1,7 @@
 import './Filter.css'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
-import { filter_categories } from './utils';
+import { filter_categories } from '../utils';
 
 function Filter( {setFilters}) {
     const animatedComponents = makeAnimated();
