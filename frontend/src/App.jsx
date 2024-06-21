@@ -1,6 +1,6 @@
 import './App.css'
 import Search from './Search'
-import Sort from './Sort'
+import Filter from './Filter'
 import BoardList from './BoardList'
 import CreateForm from './CreateForm'
 
@@ -27,6 +27,7 @@ function App() {
     setFormView(false)
   }
 
+  //when a search is made perform a filter pattern matching the search [query] to shownCards
   const handleSearch = (query) => {
     setSearch(query)
     const filtered = cards.filter(card => 
@@ -46,7 +47,7 @@ function App() {
     })
     .then(data => {
       setCards(data);
-      setShownCards(data);
+      setShownCards(data); //both sets of cards should have the full suite to start and then the shown state is dynamic for rendering
     })
     .catch(error => {
       console.error('Error fetching card:', error);
@@ -58,7 +59,7 @@ function App() {
     <header>
       <h3>Kudos Board</h3>
       <Search searchQuery={search} setSearchQuery={handleSearch}/>
-      <Sort/>
+      <Filter/>
     </header>
     <div className='App'>
       <CreateForm
