@@ -1,0 +1,35 @@
+.board {
+    border: 1px solid black;
+    border-radius: 8px;
+    margin: 10px;
+    width: 40%;
+    height: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    transition: transform 0.1s;
+    font-size: 10pt;
+    flex-direction: column;
+    background-color: #f4fdf4;
+    padding-bottom: 4%;
+
+}
+
+.board img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    margin: 0;
+}
+
+.board:hover {
+    transform: scale(1.04);
+}
+
+
+.board h3, p {
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    margin: 5px 0; 
+}

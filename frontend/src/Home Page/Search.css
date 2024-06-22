@@ -1,0 +1,26 @@
+.searchbar {
+    text-align: center;
+    margin-left: 60px;
+    margin-bottom: 4%;
+}
+
+.searchbar input {
+    font-size: 16px; 
+    border: none; 
+    outline: none;
+    background-color: transparent; 
+    width: 60%; 
+    border-bottom: 2px solid cornflowerblue;
+    text-align: center; 
+    color: cornflowerblue; 
+    transition: border-color 0.3s; 
+}
+
+.searchbar input:focus {
+    border-bottom: 2px solid deepskyblue; 
+}
+
+.searchbar input::placeholder {
+    color: 	#b8d8be; 
+    opacity: 1; 
+}

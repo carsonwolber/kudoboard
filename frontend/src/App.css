@@ -1,0 +1,41 @@
+
+header {
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  color: cornflowerblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 40pt;
+}
+
+footer {
+  background-color: #457462;
+  height: 10vh;
+  justify-content: center;
+  align-self: center;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  margin-top: 12vh;
+}
+
+.App {
+  margin-top: 1%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.newboardbtn {
+  margin: auto;
+  width: 10%;
+  height: 40%;
+}
