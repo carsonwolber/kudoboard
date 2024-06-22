@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import CardList from './CardList';
 import CreateCardForm from './CreateCardForm'
-import { fetchBoard } from '../utils';
 
 function BoardPage() {
     const [board, setBoard] = useState(null);
@@ -24,17 +23,20 @@ function BoardPage() {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await fetchBoard(boardId);
+        fetch(`${import.meta.env.VITE_BACKEND_ADDRESS}/boards/${boardId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
                 setBoard(data);
-            } catch (error) {
+            })
+            .catch(error => {
                 console.error('Error fetching board data:', error);
-            }
-        };
-    
-        fetchData();
-    }, [boardId]);
+            });
+    }, []);
 
     return (
         <div>

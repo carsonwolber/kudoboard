@@ -35,6 +35,27 @@ app.get('/boards/:boardId', async (req, res) => {
     }
 });
 
+app.delete('/boards/:boardId', async (req, res) => {
+    const { boardId } = req.params;
+
+    try {
+        // Before a board can be deleted all the related cards have to be deleted
+        await prisma.card.deleteMany({
+            where: {
+              boardId: parseInt(boardId)
+            }
+          });
+
+        const deletedBoard = await prisma.board.delete({
+            where: { id: parseInt(boardId) }
+        });
+        res.status(204).send();
+    } catch (error) {
+        console.error('Failed to delete card:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 
 app.post('/boards', async (req, res) => {
     const { title, image, category, author } = req.body;
