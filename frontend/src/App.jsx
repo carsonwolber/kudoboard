@@ -93,6 +93,7 @@ function App() {
               <div className='banner'>
                 <Search searchQuery={search} setSearchQuery={handleSearch}/>
                 <Filter setFilters={handleFilter}/>
+                <p>Create a new Board Today!(this is the banner)</p>
               </div>
             </header>
             <div className='App'>

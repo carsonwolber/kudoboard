@@ -31,7 +31,7 @@ function CreateForm({ view, closeView }) {
         setGifView(false);
     };
 
-    //works for the author and title fields since they behave identically
+    // Works for the author and title fields since they behave identically
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -94,7 +94,7 @@ function CreateForm({ view, closeView }) {
                         value={formData.category.value}
                         required
                     />
-                    <label>Author:</label>
+                    <label>Author (optional):</label>
                     <input type="text" name="author" value={formData.author} onChange={handleChange}/>
                     <button type="submit">Submit</button>
                 </form>
